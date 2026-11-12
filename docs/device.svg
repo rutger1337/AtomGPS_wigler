@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="330" viewBox="0 0 680 330" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="14">
+  <rect width="680" height="330" rx="12" fill="#f6f8fa" stroke="#d0d7de"/>
+
+  <!-- ===== Top view ===== -->
+  <text x="110" y="34" text-anchor="middle" font-weight="600" fill="#24292f">Top view</text>
+  <rect x="30" y="50" width="160" height="160" rx="18" fill="#e9e9e9" stroke="#8c959f" stroke-width="2"/>
+  <rect x="55" y="75" width="110" height="110" rx="12" fill="#ffffff" stroke="#afb8c1" stroke-width="2"/>
+  <circle cx="110" cy="130" r="22" fill="#22d64a" opacity="0.25"/>
+  <circle cx="110" cy="130" r="9" fill="#22d64a"/>
+  <!-- callouts -->
+  <line x1="165" y1="95" x2="215" y2="70" stroke="#57606a"/>
+  <text x="218" y="66" fill="#24292f"><tspan font-weight="600">Button</tspan> (whole top face)</text>
+  <text x="218" y="84" fill="#57606a" font-size="12">Does nothing in this firmware</text>
+  <line x1="119" y1="130" x2="215" y2="140" stroke="#57606a"/>
+  <text x="218" y="136" fill="#24292f" font-weight="600">Status LED</text>
+  <text x="218" y="154" fill="#57606a" font-size="12">Shines through the button</text>
+
+  <!-- ===== Side view ===== -->
+  <text x="490" y="34" text-anchor="middle" font-weight="600" fill="#24292f">Side view</text>
+  <!-- Atom Lite -->
+  <rect x="410" y="50" width="160" height="60" rx="10" fill="#e9e9e9" stroke="#8c959f" stroke-width="2"/>
+  <text x="490" y="72" text-anchor="middle" fill="#57606a" font-size="12">Atom Lite</text>
+  <rect x="465" y="84" width="34" height="12" rx="6" fill="#57606a"/>
+  <circle cx="530" cy="90" r="6" fill="#cf222e" stroke="#82071e"/>
+  <!-- GPS base -->
+  <rect x="410" y="112" width="160" height="98" rx="10" fill="#424a53" stroke="#24292f" stroke-width="2"/>
+  <text x="490" y="140" text-anchor="middle" fill="#d0d7de" font-size="12">GPS base</text>
+  <rect x="440" y="176" width="100" height="10" rx="2" fill="#0d1117" stroke="#8c959f"/>
+  <!-- callouts -->
+  <line x1="482" y1="96" x2="300" y2="245" stroke="#57606a"/>
+  <text x="250" y="262" fill="#24292f" font-weight="600">USB-C</text>
+  <text x="250" y="280" fill="#57606a" font-size="12">Power, no on/off switch</text>
+  <line x1="530" y1="96" x2="590" y2="245" stroke="#57606a"/>
+  <text x="545" y="262" fill="#24292f" font-weight="600">Reset button</text>
+  <text x="545" y="280" fill="#57606a" font-size="12">Restart = new file</text>
+  <line x1="490" y1="186" x2="460" y2="245" stroke="#57606a"/>
+  <text x="405" y="262" fill="#24292f" font-weight="600">microSD slot</text>
+  <text x="405" y="280" fill="#57606a" font-size="12">Scans + wigle.cfg</text>
+
+  <text x="340" y="316" text-anchor="middle" fill="#8c959f" font-size="11">Illustration, not to scale. Port positions may differ slightly on your unit.</text>
+</svg>
