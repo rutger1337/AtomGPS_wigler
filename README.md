@@ -45,7 +45,7 @@ You may need to execute the erase_flash and write_flash steps separately.
 
 ### The device
 
-<img src="docs/device.svg" alt="Atom GPS kit: top view with the button and status LED, side view with USB-C port, reset button and microSD slot" width="680">
+<img src="docs/device.svg" alt="Atom GPS kit: top view with the GPS half, the button with status LED and the reset button on the side; end view with USB-C, Grove port and microSD slot" width="680">
 
 - **Top button with LED:** you press the whole top face. The status LED sits underneath it. The button does nothing in this firmware.
 - **Reset button** (small, on the side): restarts the device. A restart always begins a new CSV file.
