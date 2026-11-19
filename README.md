@@ -45,9 +45,9 @@ You may need to execute the erase_flash and write_flash steps separately.
 
 ### The device
 
-<img src="docs/device.svg" alt="Atom GPS kit: top view with the button and status LED, side view with USB-C port, reset button and microSD slot" width="680">
+<img src="docs/device.svg" alt="Atom GPS kit: top view with the GPS half, the button with status LED and the reset button on the side; end view with USB-C, Grove port and microSD slot" width="680">
 
-- **Top button with LED:** you press the whole top face. The status LED sits underneath it. The button does nothing in this firmware.
+- **Top button with LED:** you press the whole top face. The status LED sits underneath it. Press it to upload to WiGLE right away (see [Auto-upload](#auto-upload-to-wigle)).
 - **Reset button** (small, on the side): restarts the device. A restart always begins a new CSV file.
 - **USB-C:** power. Use a power bank or a car USB port. There is no on/off switch: plug it in to turn it on, unplug it to turn it off.
 - **microSD slot:** holds the card that stores the scans and the config file. Use a FAT32 card up to 32 GB.
@@ -98,6 +98,8 @@ wigle_auth=QUlE...
 donate=off
 ```
 When one of these networks is in range (at boot, or during scanning), the device connects and uploads every `wifi-scans-*.csv` that has data, then moves it to `/uploaded/`. Failed uploads are retried every 10 minutes while the network stays in range. After a successful upload it won't upload again until it has left the network's range and come back.
+
+To upload right away, hold the top button until the LED turns blue (a few seconds). The device looks for one of your networks and uploads, ignoring the 10-minute wait. This also works while it's still waiting for a GPS fix. If the LED doesn't turn blue within a few seconds, none of your networks is in range.
 
 Notes:
 - For an open network, leave `pass=` empty.

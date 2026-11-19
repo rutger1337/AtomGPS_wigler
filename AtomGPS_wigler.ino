@@ -109,6 +109,7 @@ void waitForGPSFix() {
 
   Serial.println("Waiting for GPS fix...");
   while (!gps.location.isValid()) {
+    handleButton();
     if (Serial1.available() > 0) {
       gps.encode(Serial1.read());
     }
@@ -160,8 +161,10 @@ void loop() {
   while (Serial1.available() > 0) {
     gps.encode(Serial1.read());
   }
+  handleButton();
 
   if (gps.location.isValid()) {
+    if (!SD.exists(fileName)) initializeFile();  // current file was uploaded and moved
     M5.dis.drawpix(0, 0x00ff00);
     delay(180);  // scan delay 
     M5.dis.clear();
@@ -194,7 +197,6 @@ void loop() {
       }
     }
     maybeUpload(numNetworks);
-    if (!SD.exists(fileName)) initializeFile();  // current file was uploaded and moved
   } else {
     M5.dis.drawpix(0, 0x800080);  // Purple LED if waiting for GPS fix
     delay(500);
@@ -296,6 +298,24 @@ void maybeUpload(int numNetworks) {
   uploadDone = uploadPending(k);
 }
 
+// Button held: upload now if a known network is in range, ignoring the retry timer.
+// Polled, not an interrupt: Wi-Fi start-up fires false interrupts on GPIO39 (ESP32 errata).
+// shortcut: the scan blocks ~2 s, so a press must be held until the LED turns blue; use an async scan if that annoys.
+void handleButton() {
+  if (digitalRead(39) == HIGH) return;  // Atom top button, active low
+  delay(50);
+  if (digitalRead(39) == HIGH) return;  // glitch, not a press
+  Serial.println("Button: manual upload.");
+  int k = findKnownNetwork(WiFi.scanNetworks(false, true, false, 110));
+  if (k < 0) {
+    Serial.println("No known network in range.");
+  } else {
+    lastUploadAttempt = millis();
+    uploadDone = uploadPending(k);
+  }
+  while (digitalRead(39) == LOW) delay(10);  // one run per press
+}
+
 // Uploads every /wifi-scans-*.csv with data rows and moves it to /uploaded/. True if all succeeded.
 bool uploadPending(int k) {
   Serial.println("Known network " + knownSSID[k] + ", connecting...");
@@ -322,6 +342,7 @@ bool uploadPending(int k) {
   }
   root.close();
   SD.mkdir("/uploaded");
+  if (count == 0) Serial.println("Nothing to upload.");
 
   bool allOk = true;
   for (int i = 0; i < count; i++) {
